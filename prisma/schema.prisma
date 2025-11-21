@@ -77,12 +77,18 @@ model Project {
   name        String
   description String
   status      String    @default("in-progress")
+  problems     String?
+  summary     String?
+  objectives  String[]?
+  cycle       String?
+  academic_period String?
+
   startDate   DateTime?
   endDate     DateTime?
 
   careerId String
   career   Career  @relation(fields: [careerId], references: [id])
-  skillsId String?
+  skillsId String[]?
   skills   Skills? @relation(fields: [skillsId], references: [id])
 
   createdAt    DateTime      @default(now())

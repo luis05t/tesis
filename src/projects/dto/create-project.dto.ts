@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
+  IsArray,
   IsDateString,
   IsNotEmpty,
   IsOptional,
@@ -10,36 +11,61 @@ import {
 export class CreateProjectDto {
   @ApiProperty()
   @IsString()
-  @IsNotEmpty() // <-- Añadido para seguridad
+  @IsNotEmpty() 
   name: string;
 
   @ApiProperty()
   @IsString()
-  @IsNotEmpty() // <-- Añadido para seguridad
+  @IsNotEmpty() 
   description: string;
 
   @ApiProperty({ required: false, default: 'in-progress' })
+  @IsOptional() 
   @IsString()
-  @IsOptional() // <-- CORREGIDO: Hecho opcional
   status?: string;
 
   @ApiProperty({ required: false })
-  @IsDateString() // <-- CORREGIDO: De @IsDate a @IsDateString
-  @IsOptional() // <-- CORREGIDO: Hecho opcional
-  startDate?: string; // <-- CORREGIDO: Añadido '?'
+  @IsOptional() 
+  @IsString()
+  problems?: string;
+  
+  @ApiProperty({ required: false })
+  @IsOptional() 
+  @IsString()
+  summary?: string;
 
   @ApiProperty({ required: false })
-  @IsDateString() // <-- CORREGIDO: De @IsDate a @IsDateString
-  @IsOptional() // <-- CORREGIDO: Hecho opcional
-  endDate?: string; // <-- CORREGIDO: Añadido '?'
+  @IsOptional() 
+  @IsString({ each: true })
+  objectives?: string[];
+
+  @ApiProperty({ required: false })
+  @IsOptional() 
+  @IsString()
+  cycle?: string;
+  
+  @ApiProperty({ required: false })
+  @IsOptional() 
+  @IsString()
+  academic_period?: string;
+
+  @ApiProperty({ required: false })
+  @IsOptional() 
+  @IsDateString() 
+  startDate?: string; 
+
+  @ApiProperty({ required: false })
+  @IsOptional() 
+  @IsDateString() 
+  endDate?: string; 
 
   @ApiProperty()
   @IsUUID()
-  @IsNotEmpty() // <-- Añadido para seguridad
+  @IsNotEmpty() 
   careerId: string;
 
   @ApiProperty({ required: false })
-  @IsUUID()
-  @IsOptional() // <-- CORREGIDO: Hecho opcional
-  skillsId?: string; // <-- CORREGIDO: Añadido '?'
+  @IsOptional() 
+  @IsString({ each: true })
+  skillsId?: string[]; 
 }
