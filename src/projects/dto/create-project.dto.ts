@@ -63,9 +63,4 @@ export class CreateProjectDto {
   @IsUUID()
   @IsNotEmpty() 
   careerId: string;
-
-  @ApiProperty({ required: false })
-  @IsOptional() 
-  @IsString({ each: true })
-  skillsId?: string[]; 
 }

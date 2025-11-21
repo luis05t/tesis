@@ -56,7 +56,8 @@ export const ModelName = {
   Career: 'Career',
   Project: 'Project',
   UserProject: 'UserProject',
-  Skills: 'Skills'
+  Skills: 'Skills',
+  projectSkills: 'projectSkills'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -137,10 +138,14 @@ export const ProjectScalarFieldEnum = {
   name: 'name',
   description: 'description',
   status: 'status',
+  problems: 'problems',
+  summary: 'summary',
+  objectives: 'objectives',
+  cycle: 'cycle',
+  academic_period: 'academic_period',
   startDate: 'startDate',
   endDate: 'endDate',
   careerId: 'careerId',
-  skillsId: 'skillsId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -169,6 +174,17 @@ export const SkillsScalarFieldEnum = {
 } as const
 
 export type SkillsScalarFieldEnum = (typeof SkillsScalarFieldEnum)[keyof typeof SkillsScalarFieldEnum]
+
+
+export const ProjectSkillsScalarFieldEnum = {
+  id: 'id',
+  projectId: 'projectId',
+  skillId: 'skillId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ProjectSkillsScalarFieldEnum = (typeof ProjectSkillsScalarFieldEnum)[keyof typeof ProjectSkillsScalarFieldEnum]
 
 
 export const SortOrder = {

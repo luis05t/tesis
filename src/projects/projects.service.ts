@@ -7,7 +7,24 @@ import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class ProjectsService extends BaseService<ProjectModel, CreateProjectDto, UpdateProjectDto> {
-  constructor(prismaService: PrismaService) {
+  constructor(private readonly prismaService: PrismaService) {
     super(prismaService, { name: 'project' });
+  }
+
+  async findProjectsBySkillId(skillId: string) {
+    try{
+      const projects = await this.prismaService.project.findMany({
+      where: {
+        projectSkills: {
+          some: {
+            skillId: skillId,
+          },
+        },
+      },
+    });
+    return projects;
+    }catch(error){
+      throw error;
+    }
   }
 }

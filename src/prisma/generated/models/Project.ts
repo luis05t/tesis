@@ -29,10 +29,13 @@ export type ProjectMinAggregateOutputType = {
   name: string | null
   description: string | null
   status: string | null
+  problems: string | null
+  summary: string | null
+  cycle: string | null
+  academic_period: string | null
   startDate: Date | null
   endDate: Date | null
   careerId: string | null
-  skillsId: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -42,10 +45,13 @@ export type ProjectMaxAggregateOutputType = {
   name: string | null
   description: string | null
   status: string | null
+  problems: string | null
+  summary: string | null
+  cycle: string | null
+  academic_period: string | null
   startDate: Date | null
   endDate: Date | null
   careerId: string | null
-  skillsId: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -55,10 +61,14 @@ export type ProjectCountAggregateOutputType = {
   name: number
   description: number
   status: number
+  problems: number
+  summary: number
+  objectives: number
+  cycle: number
+  academic_period: number
   startDate: number
   endDate: number
   careerId: number
-  skillsId: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -70,10 +80,13 @@ export type ProjectMinAggregateInputType = {
   name?: true
   description?: true
   status?: true
+  problems?: true
+  summary?: true
+  cycle?: true
+  academic_period?: true
   startDate?: true
   endDate?: true
   careerId?: true
-  skillsId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -83,10 +96,13 @@ export type ProjectMaxAggregateInputType = {
   name?: true
   description?: true
   status?: true
+  problems?: true
+  summary?: true
+  cycle?: true
+  academic_period?: true
   startDate?: true
   endDate?: true
   careerId?: true
-  skillsId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -96,10 +112,14 @@ export type ProjectCountAggregateInputType = {
   name?: true
   description?: true
   status?: true
+  problems?: true
+  summary?: true
+  objectives?: true
+  cycle?: true
+  academic_period?: true
   startDate?: true
   endDate?: true
   careerId?: true
-  skillsId?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -182,10 +202,14 @@ export type ProjectGroupByOutputType = {
   name: string
   description: string
   status: string
+  problems: string | null
+  summary: string | null
+  objectives: string[]
+  cycle: string | null
+  academic_period: string | null
   startDate: Date | null
   endDate: Date | null
   careerId: string
-  skillsId: string | null
   createdAt: Date
   updatedAt: Date
   _count: ProjectCountAggregateOutputType | null
@@ -216,15 +240,19 @@ export type ProjectWhereInput = {
   name?: Prisma.StringFilter<"Project"> | string
   description?: Prisma.StringFilter<"Project"> | string
   status?: Prisma.StringFilter<"Project"> | string
+  problems?: Prisma.StringNullableFilter<"Project"> | string | null
+  summary?: Prisma.StringNullableFilter<"Project"> | string | null
+  objectives?: Prisma.StringNullableListFilter<"Project">
+  cycle?: Prisma.StringNullableFilter<"Project"> | string | null
+  academic_period?: Prisma.StringNullableFilter<"Project"> | string | null
   startDate?: Prisma.DateTimeNullableFilter<"Project"> | Date | string | null
   endDate?: Prisma.DateTimeNullableFilter<"Project"> | Date | string | null
   careerId?: Prisma.StringFilter<"Project"> | string
-  skillsId?: Prisma.StringNullableFilter<"Project"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Project"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Project"> | Date | string
   career?: Prisma.XOR<Prisma.CareerScalarRelationFilter, Prisma.CareerWhereInput>
-  skills?: Prisma.XOR<Prisma.SkillsNullableScalarRelationFilter, Prisma.SkillsWhereInput> | null
   userProjects?: Prisma.UserProjectListRelationFilter
+  projectSkills?: Prisma.ProjectSkillsListRelationFilter
 }
 
 export type ProjectOrderByWithRelationInput = {
@@ -232,15 +260,19 @@ export type ProjectOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  problems?: Prisma.SortOrderInput | Prisma.SortOrder
+  summary?: Prisma.SortOrderInput | Prisma.SortOrder
+  objectives?: Prisma.SortOrder
+  cycle?: Prisma.SortOrderInput | Prisma.SortOrder
+  academic_period?: Prisma.SortOrderInput | Prisma.SortOrder
   startDate?: Prisma.SortOrderInput | Prisma.SortOrder
   endDate?: Prisma.SortOrderInput | Prisma.SortOrder
   careerId?: Prisma.SortOrder
-  skillsId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   career?: Prisma.CareerOrderByWithRelationInput
-  skills?: Prisma.SkillsOrderByWithRelationInput
   userProjects?: Prisma.UserProjectOrderByRelationAggregateInput
+  projectSkills?: Prisma.projectSkillsOrderByRelationAggregateInput
 }
 
 export type ProjectWhereUniqueInput = Prisma.AtLeast<{
@@ -251,15 +283,19 @@ export type ProjectWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"Project"> | string
   description?: Prisma.StringFilter<"Project"> | string
   status?: Prisma.StringFilter<"Project"> | string
+  problems?: Prisma.StringNullableFilter<"Project"> | string | null
+  summary?: Prisma.StringNullableFilter<"Project"> | string | null
+  objectives?: Prisma.StringNullableListFilter<"Project">
+  cycle?: Prisma.StringNullableFilter<"Project"> | string | null
+  academic_period?: Prisma.StringNullableFilter<"Project"> | string | null
   startDate?: Prisma.DateTimeNullableFilter<"Project"> | Date | string | null
   endDate?: Prisma.DateTimeNullableFilter<"Project"> | Date | string | null
   careerId?: Prisma.StringFilter<"Project"> | string
-  skillsId?: Prisma.StringNullableFilter<"Project"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Project"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Project"> | Date | string
   career?: Prisma.XOR<Prisma.CareerScalarRelationFilter, Prisma.CareerWhereInput>
-  skills?: Prisma.XOR<Prisma.SkillsNullableScalarRelationFilter, Prisma.SkillsWhereInput> | null
   userProjects?: Prisma.UserProjectListRelationFilter
+  projectSkills?: Prisma.ProjectSkillsListRelationFilter
 }, "id">
 
 export type ProjectOrderByWithAggregationInput = {
@@ -267,10 +303,14 @@ export type ProjectOrderByWithAggregationInput = {
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  problems?: Prisma.SortOrderInput | Prisma.SortOrder
+  summary?: Prisma.SortOrderInput | Prisma.SortOrder
+  objectives?: Prisma.SortOrder
+  cycle?: Prisma.SortOrderInput | Prisma.SortOrder
+  academic_period?: Prisma.SortOrderInput | Prisma.SortOrder
   startDate?: Prisma.SortOrderInput | Prisma.SortOrder
   endDate?: Prisma.SortOrderInput | Prisma.SortOrder
   careerId?: Prisma.SortOrder
-  skillsId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.ProjectCountOrderByAggregateInput
@@ -286,10 +326,14 @@ export type ProjectScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"Project"> | string
   description?: Prisma.StringWithAggregatesFilter<"Project"> | string
   status?: Prisma.StringWithAggregatesFilter<"Project"> | string
+  problems?: Prisma.StringNullableWithAggregatesFilter<"Project"> | string | null
+  summary?: Prisma.StringNullableWithAggregatesFilter<"Project"> | string | null
+  objectives?: Prisma.StringNullableListFilter<"Project">
+  cycle?: Prisma.StringNullableWithAggregatesFilter<"Project"> | string | null
+  academic_period?: Prisma.StringNullableWithAggregatesFilter<"Project"> | string | null
   startDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Project"> | Date | string | null
   endDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Project"> | Date | string | null
   careerId?: Prisma.StringWithAggregatesFilter<"Project"> | string
-  skillsId?: Prisma.StringNullableWithAggregatesFilter<"Project"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Project"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Project"> | Date | string
 }
@@ -299,13 +343,18 @@ export type ProjectCreateInput = {
   name: string
   description: string
   status?: string
+  problems?: string | null
+  summary?: string | null
+  objectives?: Prisma.ProjectCreateobjectivesInput | string[]
+  cycle?: string | null
+  academic_period?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   career: Prisma.CareerCreateNestedOneWithoutProjectsInput
-  skills?: Prisma.SkillsCreateNestedOneWithoutProjectsInput
   userProjects?: Prisma.UserProjectCreateNestedManyWithoutProjectInput
+  projectSkills?: Prisma.projectSkillsCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUncheckedCreateInput = {
@@ -313,13 +362,18 @@ export type ProjectUncheckedCreateInput = {
   name: string
   description: string
   status?: string
+  problems?: string | null
+  summary?: string | null
+  objectives?: Prisma.ProjectCreateobjectivesInput | string[]
+  cycle?: string | null
+  academic_period?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   careerId: string
-  skillsId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   userProjects?: Prisma.UserProjectUncheckedCreateNestedManyWithoutProjectInput
+  projectSkills?: Prisma.projectSkillsUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUpdateInput = {
@@ -327,13 +381,18 @@ export type ProjectUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  problems?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  objectives?: Prisma.ProjectUpdateobjectivesInput | string[]
+  cycle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  academic_period?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   career?: Prisma.CareerUpdateOneRequiredWithoutProjectsNestedInput
-  skills?: Prisma.SkillsUpdateOneWithoutProjectsNestedInput
   userProjects?: Prisma.UserProjectUpdateManyWithoutProjectNestedInput
+  projectSkills?: Prisma.projectSkillsUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateInput = {
@@ -341,13 +400,18 @@ export type ProjectUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  problems?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  objectives?: Prisma.ProjectUpdateobjectivesInput | string[]
+  cycle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  academic_period?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   careerId?: Prisma.StringFieldUpdateOperationsInput | string
-  skillsId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userProjects?: Prisma.UserProjectUncheckedUpdateManyWithoutProjectNestedInput
+  projectSkills?: Prisma.projectSkillsUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectCreateManyInput = {
@@ -355,10 +419,14 @@ export type ProjectCreateManyInput = {
   name: string
   description: string
   status?: string
+  problems?: string | null
+  summary?: string | null
+  objectives?: Prisma.ProjectCreateobjectivesInput | string[]
+  cycle?: string | null
+  academic_period?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   careerId: string
-  skillsId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -368,6 +436,11 @@ export type ProjectUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  problems?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  objectives?: Prisma.ProjectUpdateobjectivesInput | string[]
+  cycle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  academic_period?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -379,10 +452,14 @@ export type ProjectUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  problems?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  objectives?: Prisma.ProjectUpdateobjectivesInput | string[]
+  cycle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  academic_period?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   careerId?: Prisma.StringFieldUpdateOperationsInput | string
-  skillsId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -397,15 +474,27 @@ export type ProjectOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type StringNullableListFilter<$PrismaModel = never> = {
+  equals?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null
+  has?: string | Prisma.StringFieldRefInput<$PrismaModel> | null
+  hasEvery?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  hasSome?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  isEmpty?: boolean
+}
+
 export type ProjectCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  problems?: Prisma.SortOrder
+  summary?: Prisma.SortOrder
+  objectives?: Prisma.SortOrder
+  cycle?: Prisma.SortOrder
+  academic_period?: Prisma.SortOrder
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
   careerId?: Prisma.SortOrder
-  skillsId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -415,10 +504,13 @@ export type ProjectMaxOrderByAggregateInput = {
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  problems?: Prisma.SortOrder
+  summary?: Prisma.SortOrder
+  cycle?: Prisma.SortOrder
+  academic_period?: Prisma.SortOrder
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
   careerId?: Prisma.SortOrder
-  skillsId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -428,10 +520,13 @@ export type ProjectMinOrderByAggregateInput = {
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  problems?: Prisma.SortOrder
+  summary?: Prisma.SortOrder
+  cycle?: Prisma.SortOrder
+  academic_period?: Prisma.SortOrder
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
   careerId?: Prisma.SortOrder
-  skillsId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -483,6 +578,15 @@ export type ProjectUncheckedUpdateManyWithoutCareerNestedInput = {
   deleteMany?: Prisma.ProjectScalarWhereInput | Prisma.ProjectScalarWhereInput[]
 }
 
+export type ProjectCreateobjectivesInput = {
+  set: string[]
+}
+
+export type ProjectUpdateobjectivesInput = {
+  set?: string[]
+  push?: string | string[]
+}
+
 export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
 }
@@ -501,46 +605,18 @@ export type ProjectUpdateOneRequiredWithoutUserProjectsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutUserProjectsInput, Prisma.ProjectUpdateWithoutUserProjectsInput>, Prisma.ProjectUncheckedUpdateWithoutUserProjectsInput>
 }
 
-export type ProjectCreateNestedManyWithoutSkillsInput = {
-  create?: Prisma.XOR<Prisma.ProjectCreateWithoutSkillsInput, Prisma.ProjectUncheckedCreateWithoutSkillsInput> | Prisma.ProjectCreateWithoutSkillsInput[] | Prisma.ProjectUncheckedCreateWithoutSkillsInput[]
-  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutSkillsInput | Prisma.ProjectCreateOrConnectWithoutSkillsInput[]
-  createMany?: Prisma.ProjectCreateManySkillsInputEnvelope
-  connect?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
+export type ProjectCreateNestedOneWithoutProjectSkillsInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutProjectSkillsInput, Prisma.ProjectUncheckedCreateWithoutProjectSkillsInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutProjectSkillsInput
+  connect?: Prisma.ProjectWhereUniqueInput
 }
 
-export type ProjectUncheckedCreateNestedManyWithoutSkillsInput = {
-  create?: Prisma.XOR<Prisma.ProjectCreateWithoutSkillsInput, Prisma.ProjectUncheckedCreateWithoutSkillsInput> | Prisma.ProjectCreateWithoutSkillsInput[] | Prisma.ProjectUncheckedCreateWithoutSkillsInput[]
-  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutSkillsInput | Prisma.ProjectCreateOrConnectWithoutSkillsInput[]
-  createMany?: Prisma.ProjectCreateManySkillsInputEnvelope
-  connect?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
-}
-
-export type ProjectUpdateManyWithoutSkillsNestedInput = {
-  create?: Prisma.XOR<Prisma.ProjectCreateWithoutSkillsInput, Prisma.ProjectUncheckedCreateWithoutSkillsInput> | Prisma.ProjectCreateWithoutSkillsInput[] | Prisma.ProjectUncheckedCreateWithoutSkillsInput[]
-  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutSkillsInput | Prisma.ProjectCreateOrConnectWithoutSkillsInput[]
-  upsert?: Prisma.ProjectUpsertWithWhereUniqueWithoutSkillsInput | Prisma.ProjectUpsertWithWhereUniqueWithoutSkillsInput[]
-  createMany?: Prisma.ProjectCreateManySkillsInputEnvelope
-  set?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
-  disconnect?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
-  delete?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
-  connect?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
-  update?: Prisma.ProjectUpdateWithWhereUniqueWithoutSkillsInput | Prisma.ProjectUpdateWithWhereUniqueWithoutSkillsInput[]
-  updateMany?: Prisma.ProjectUpdateManyWithWhereWithoutSkillsInput | Prisma.ProjectUpdateManyWithWhereWithoutSkillsInput[]
-  deleteMany?: Prisma.ProjectScalarWhereInput | Prisma.ProjectScalarWhereInput[]
-}
-
-export type ProjectUncheckedUpdateManyWithoutSkillsNestedInput = {
-  create?: Prisma.XOR<Prisma.ProjectCreateWithoutSkillsInput, Prisma.ProjectUncheckedCreateWithoutSkillsInput> | Prisma.ProjectCreateWithoutSkillsInput[] | Prisma.ProjectUncheckedCreateWithoutSkillsInput[]
-  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutSkillsInput | Prisma.ProjectCreateOrConnectWithoutSkillsInput[]
-  upsert?: Prisma.ProjectUpsertWithWhereUniqueWithoutSkillsInput | Prisma.ProjectUpsertWithWhereUniqueWithoutSkillsInput[]
-  createMany?: Prisma.ProjectCreateManySkillsInputEnvelope
-  set?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
-  disconnect?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
-  delete?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
-  connect?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
-  update?: Prisma.ProjectUpdateWithWhereUniqueWithoutSkillsInput | Prisma.ProjectUpdateWithWhereUniqueWithoutSkillsInput[]
-  updateMany?: Prisma.ProjectUpdateManyWithWhereWithoutSkillsInput | Prisma.ProjectUpdateManyWithWhereWithoutSkillsInput[]
-  deleteMany?: Prisma.ProjectScalarWhereInput | Prisma.ProjectScalarWhereInput[]
+export type ProjectUpdateOneRequiredWithoutProjectSkillsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutProjectSkillsInput, Prisma.ProjectUncheckedCreateWithoutProjectSkillsInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutProjectSkillsInput
+  upsert?: Prisma.ProjectUpsertWithoutProjectSkillsInput
+  connect?: Prisma.ProjectWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutProjectSkillsInput, Prisma.ProjectUpdateWithoutProjectSkillsInput>, Prisma.ProjectUncheckedUpdateWithoutProjectSkillsInput>
 }
 
 export type ProjectCreateWithoutCareerInput = {
@@ -548,12 +624,17 @@ export type ProjectCreateWithoutCareerInput = {
   name: string
   description: string
   status?: string
+  problems?: string | null
+  summary?: string | null
+  objectives?: Prisma.ProjectCreateobjectivesInput | string[]
+  cycle?: string | null
+  academic_period?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  skills?: Prisma.SkillsCreateNestedOneWithoutProjectsInput
   userProjects?: Prisma.UserProjectCreateNestedManyWithoutProjectInput
+  projectSkills?: Prisma.projectSkillsCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUncheckedCreateWithoutCareerInput = {
@@ -561,12 +642,17 @@ export type ProjectUncheckedCreateWithoutCareerInput = {
   name: string
   description: string
   status?: string
+  problems?: string | null
+  summary?: string | null
+  objectives?: Prisma.ProjectCreateobjectivesInput | string[]
+  cycle?: string | null
+  academic_period?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
-  skillsId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   userProjects?: Prisma.UserProjectUncheckedCreateNestedManyWithoutProjectInput
+  projectSkills?: Prisma.projectSkillsUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutCareerInput = {
@@ -603,10 +689,14 @@ export type ProjectScalarWhereInput = {
   name?: Prisma.StringFilter<"Project"> | string
   description?: Prisma.StringFilter<"Project"> | string
   status?: Prisma.StringFilter<"Project"> | string
+  problems?: Prisma.StringNullableFilter<"Project"> | string | null
+  summary?: Prisma.StringNullableFilter<"Project"> | string | null
+  objectives?: Prisma.StringNullableListFilter<"Project">
+  cycle?: Prisma.StringNullableFilter<"Project"> | string | null
+  academic_period?: Prisma.StringNullableFilter<"Project"> | string | null
   startDate?: Prisma.DateTimeNullableFilter<"Project"> | Date | string | null
   endDate?: Prisma.DateTimeNullableFilter<"Project"> | Date | string | null
   careerId?: Prisma.StringFilter<"Project"> | string
-  skillsId?: Prisma.StringNullableFilter<"Project"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Project"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Project"> | Date | string
 }
@@ -616,12 +706,17 @@ export type ProjectCreateWithoutUserProjectsInput = {
   name: string
   description: string
   status?: string
+  problems?: string | null
+  summary?: string | null
+  objectives?: Prisma.ProjectCreateobjectivesInput | string[]
+  cycle?: string | null
+  academic_period?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   career: Prisma.CareerCreateNestedOneWithoutProjectsInput
-  skills?: Prisma.SkillsCreateNestedOneWithoutProjectsInput
+  projectSkills?: Prisma.projectSkillsCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUncheckedCreateWithoutUserProjectsInput = {
@@ -629,12 +724,17 @@ export type ProjectUncheckedCreateWithoutUserProjectsInput = {
   name: string
   description: string
   status?: string
+  problems?: string | null
+  summary?: string | null
+  objectives?: Prisma.ProjectCreateobjectivesInput | string[]
+  cycle?: string | null
+  academic_period?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   careerId: string
-  skillsId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  projectSkills?: Prisma.projectSkillsUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutUserProjectsInput = {
@@ -658,12 +758,17 @@ export type ProjectUpdateWithoutUserProjectsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  problems?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  objectives?: Prisma.ProjectUpdateobjectivesInput | string[]
+  cycle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  academic_period?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   career?: Prisma.CareerUpdateOneRequiredWithoutProjectsNestedInput
-  skills?: Prisma.SkillsUpdateOneWithoutProjectsNestedInput
+  projectSkills?: Prisma.projectSkillsUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutUserProjectsInput = {
@@ -671,19 +776,29 @@ export type ProjectUncheckedUpdateWithoutUserProjectsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  problems?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  objectives?: Prisma.ProjectUpdateobjectivesInput | string[]
+  cycle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  academic_period?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   careerId?: Prisma.StringFieldUpdateOperationsInput | string
-  skillsId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  projectSkills?: Prisma.projectSkillsUncheckedUpdateManyWithoutProjectNestedInput
 }
 
-export type ProjectCreateWithoutSkillsInput = {
+export type ProjectCreateWithoutProjectSkillsInput = {
   id?: string
   name: string
   description: string
   status?: string
+  problems?: string | null
+  summary?: string | null
+  objectives?: Prisma.ProjectCreateobjectivesInput | string[]
+  cycle?: string | null
+  academic_period?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   createdAt?: Date | string
@@ -692,11 +807,16 @@ export type ProjectCreateWithoutSkillsInput = {
   userProjects?: Prisma.UserProjectCreateNestedManyWithoutProjectInput
 }
 
-export type ProjectUncheckedCreateWithoutSkillsInput = {
+export type ProjectUncheckedCreateWithoutProjectSkillsInput = {
   id?: string
   name: string
   description: string
   status?: string
+  problems?: string | null
+  summary?: string | null
+  objectives?: Prisma.ProjectCreateobjectivesInput | string[]
+  cycle?: string | null
+  academic_period?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   careerId: string
@@ -705,30 +825,56 @@ export type ProjectUncheckedCreateWithoutSkillsInput = {
   userProjects?: Prisma.UserProjectUncheckedCreateNestedManyWithoutProjectInput
 }
 
-export type ProjectCreateOrConnectWithoutSkillsInput = {
+export type ProjectCreateOrConnectWithoutProjectSkillsInput = {
   where: Prisma.ProjectWhereUniqueInput
-  create: Prisma.XOR<Prisma.ProjectCreateWithoutSkillsInput, Prisma.ProjectUncheckedCreateWithoutSkillsInput>
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutProjectSkillsInput, Prisma.ProjectUncheckedCreateWithoutProjectSkillsInput>
 }
 
-export type ProjectCreateManySkillsInputEnvelope = {
-  data: Prisma.ProjectCreateManySkillsInput | Prisma.ProjectCreateManySkillsInput[]
-  skipDuplicates?: boolean
+export type ProjectUpsertWithoutProjectSkillsInput = {
+  update: Prisma.XOR<Prisma.ProjectUpdateWithoutProjectSkillsInput, Prisma.ProjectUncheckedUpdateWithoutProjectSkillsInput>
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutProjectSkillsInput, Prisma.ProjectUncheckedCreateWithoutProjectSkillsInput>
+  where?: Prisma.ProjectWhereInput
 }
 
-export type ProjectUpsertWithWhereUniqueWithoutSkillsInput = {
-  where: Prisma.ProjectWhereUniqueInput
-  update: Prisma.XOR<Prisma.ProjectUpdateWithoutSkillsInput, Prisma.ProjectUncheckedUpdateWithoutSkillsInput>
-  create: Prisma.XOR<Prisma.ProjectCreateWithoutSkillsInput, Prisma.ProjectUncheckedCreateWithoutSkillsInput>
+export type ProjectUpdateToOneWithWhereWithoutProjectSkillsInput = {
+  where?: Prisma.ProjectWhereInput
+  data: Prisma.XOR<Prisma.ProjectUpdateWithoutProjectSkillsInput, Prisma.ProjectUncheckedUpdateWithoutProjectSkillsInput>
 }
 
-export type ProjectUpdateWithWhereUniqueWithoutSkillsInput = {
-  where: Prisma.ProjectWhereUniqueInput
-  data: Prisma.XOR<Prisma.ProjectUpdateWithoutSkillsInput, Prisma.ProjectUncheckedUpdateWithoutSkillsInput>
+export type ProjectUpdateWithoutProjectSkillsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  problems?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  objectives?: Prisma.ProjectUpdateobjectivesInput | string[]
+  cycle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  academic_period?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  career?: Prisma.CareerUpdateOneRequiredWithoutProjectsNestedInput
+  userProjects?: Prisma.UserProjectUpdateManyWithoutProjectNestedInput
 }
 
-export type ProjectUpdateManyWithWhereWithoutSkillsInput = {
-  where: Prisma.ProjectScalarWhereInput
-  data: Prisma.XOR<Prisma.ProjectUpdateManyMutationInput, Prisma.ProjectUncheckedUpdateManyWithoutSkillsInput>
+export type ProjectUncheckedUpdateWithoutProjectSkillsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  problems?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  objectives?: Prisma.ProjectUpdateobjectivesInput | string[]
+  cycle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  academic_period?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  careerId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userProjects?: Prisma.UserProjectUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectCreateManyCareerInput = {
@@ -736,9 +882,13 @@ export type ProjectCreateManyCareerInput = {
   name: string
   description: string
   status?: string
+  problems?: string | null
+  summary?: string | null
+  objectives?: Prisma.ProjectCreateobjectivesInput | string[]
+  cycle?: string | null
+  academic_period?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
-  skillsId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -748,12 +898,17 @@ export type ProjectUpdateWithoutCareerInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  problems?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  objectives?: Prisma.ProjectUpdateobjectivesInput | string[]
+  cycle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  academic_period?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  skills?: Prisma.SkillsUpdateOneWithoutProjectsNestedInput
   userProjects?: Prisma.UserProjectUpdateManyWithoutProjectNestedInput
+  projectSkills?: Prisma.projectSkillsUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutCareerInput = {
@@ -761,12 +916,17 @@ export type ProjectUncheckedUpdateWithoutCareerInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  problems?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  objectives?: Prisma.ProjectUpdateobjectivesInput | string[]
+  cycle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  academic_period?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  skillsId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userProjects?: Prisma.UserProjectUncheckedUpdateManyWithoutProjectNestedInput
+  projectSkills?: Prisma.projectSkillsUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateManyWithoutCareerInput = {
@@ -774,59 +934,13 @@ export type ProjectUncheckedUpdateManyWithoutCareerInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  problems?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  objectives?: Prisma.ProjectUpdateobjectivesInput | string[]
+  cycle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  academic_period?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  skillsId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type ProjectCreateManySkillsInput = {
-  id?: string
-  name: string
-  description: string
-  status?: string
-  startDate?: Date | string | null
-  endDate?: Date | string | null
-  careerId: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-}
-
-export type ProjectUpdateWithoutSkillsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  career?: Prisma.CareerUpdateOneRequiredWithoutProjectsNestedInput
-  userProjects?: Prisma.UserProjectUpdateManyWithoutProjectNestedInput
-}
-
-export type ProjectUncheckedUpdateWithoutSkillsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  careerId?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  userProjects?: Prisma.UserProjectUncheckedUpdateManyWithoutProjectNestedInput
-}
-
-export type ProjectUncheckedUpdateManyWithoutSkillsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  careerId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -838,10 +952,12 @@ export type ProjectUncheckedUpdateManyWithoutSkillsInput = {
 
 export type ProjectCountOutputType = {
   userProjects: number
+  projectSkills: number
 }
 
 export type ProjectCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   userProjects?: boolean | ProjectCountOutputTypeCountUserProjectsArgs
+  projectSkills?: boolean | ProjectCountOutputTypeCountProjectSkillsArgs
 }
 
 /**
@@ -861,21 +977,32 @@ export type ProjectCountOutputTypeCountUserProjectsArgs<ExtArgs extends runtime.
   where?: Prisma.UserProjectWhereInput
 }
 
+/**
+ * ProjectCountOutputType without action
+ */
+export type ProjectCountOutputTypeCountProjectSkillsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.projectSkillsWhereInput
+}
+
 
 export type ProjectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
   description?: boolean
   status?: boolean
+  problems?: boolean
+  summary?: boolean
+  objectives?: boolean
+  cycle?: boolean
+  academic_period?: boolean
   startDate?: boolean
   endDate?: boolean
   careerId?: boolean
-  skillsId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   career?: boolean | Prisma.CareerDefaultArgs<ExtArgs>
-  skills?: boolean | Prisma.Project$skillsArgs<ExtArgs>
   userProjects?: boolean | Prisma.Project$userProjectsArgs<ExtArgs>
+  projectSkills?: boolean | Prisma.Project$projectSkillsArgs<ExtArgs>
   _count?: boolean | Prisma.ProjectCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["project"]>
 
@@ -884,14 +1011,17 @@ export type ProjectSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   name?: boolean
   description?: boolean
   status?: boolean
+  problems?: boolean
+  summary?: boolean
+  objectives?: boolean
+  cycle?: boolean
+  academic_period?: boolean
   startDate?: boolean
   endDate?: boolean
   careerId?: boolean
-  skillsId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   career?: boolean | Prisma.CareerDefaultArgs<ExtArgs>
-  skills?: boolean | Prisma.Project$skillsArgs<ExtArgs>
 }, ExtArgs["result"]["project"]>
 
 export type ProjectSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -899,14 +1029,17 @@ export type ProjectSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   name?: boolean
   description?: boolean
   status?: boolean
+  problems?: boolean
+  summary?: boolean
+  objectives?: boolean
+  cycle?: boolean
+  academic_period?: boolean
   startDate?: boolean
   endDate?: boolean
   careerId?: boolean
-  skillsId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   career?: boolean | Prisma.CareerDefaultArgs<ExtArgs>
-  skills?: boolean | Prisma.Project$skillsArgs<ExtArgs>
 }, ExtArgs["result"]["project"]>
 
 export type ProjectSelectScalar = {
@@ -914,46 +1047,52 @@ export type ProjectSelectScalar = {
   name?: boolean
   description?: boolean
   status?: boolean
+  problems?: boolean
+  summary?: boolean
+  objectives?: boolean
+  cycle?: boolean
+  academic_period?: boolean
   startDate?: boolean
   endDate?: boolean
   careerId?: boolean
-  skillsId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ProjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description" | "status" | "startDate" | "endDate" | "careerId" | "skillsId" | "createdAt" | "updatedAt", ExtArgs["result"]["project"]>
+export type ProjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description" | "status" | "problems" | "summary" | "objectives" | "cycle" | "academic_period" | "startDate" | "endDate" | "careerId" | "createdAt" | "updatedAt", ExtArgs["result"]["project"]>
 export type ProjectInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   career?: boolean | Prisma.CareerDefaultArgs<ExtArgs>
-  skills?: boolean | Prisma.Project$skillsArgs<ExtArgs>
   userProjects?: boolean | Prisma.Project$userProjectsArgs<ExtArgs>
+  projectSkills?: boolean | Prisma.Project$projectSkillsArgs<ExtArgs>
   _count?: boolean | Prisma.ProjectCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ProjectIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   career?: boolean | Prisma.CareerDefaultArgs<ExtArgs>
-  skills?: boolean | Prisma.Project$skillsArgs<ExtArgs>
 }
 export type ProjectIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   career?: boolean | Prisma.CareerDefaultArgs<ExtArgs>
-  skills?: boolean | Prisma.Project$skillsArgs<ExtArgs>
 }
 
 export type $ProjectPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Project"
   objects: {
     career: Prisma.$CareerPayload<ExtArgs>
-    skills: Prisma.$SkillsPayload<ExtArgs> | null
     userProjects: Prisma.$UserProjectPayload<ExtArgs>[]
+    projectSkills: Prisma.$projectSkillsPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     name: string
     description: string
     status: string
+    problems: string | null
+    summary: string | null
+    objectives: string[]
+    cycle: string | null
+    academic_period: string | null
     startDate: Date | null
     endDate: Date | null
     careerId: string
-    skillsId: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["project"]>
@@ -1351,8 +1490,8 @@ readonly fields: ProjectFieldRefs;
 export interface Prisma__ProjectClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   career<T extends Prisma.CareerDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CareerDefaultArgs<ExtArgs>>): Prisma.Prisma__CareerClient<runtime.Types.Result.GetResult<Prisma.$CareerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  skills<T extends Prisma.Project$skillsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$skillsArgs<ExtArgs>>): Prisma.Prisma__SkillsClient<runtime.Types.Result.GetResult<Prisma.$SkillsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   userProjects<T extends Prisma.Project$userProjectsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$userProjectsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserProjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  projectSkills<T extends Prisma.Project$projectSkillsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$projectSkillsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$projectSkillsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1386,10 +1525,14 @@ export interface ProjectFieldRefs {
   readonly name: Prisma.FieldRef<"Project", 'String'>
   readonly description: Prisma.FieldRef<"Project", 'String'>
   readonly status: Prisma.FieldRef<"Project", 'String'>
+  readonly problems: Prisma.FieldRef<"Project", 'String'>
+  readonly summary: Prisma.FieldRef<"Project", 'String'>
+  readonly objectives: Prisma.FieldRef<"Project", 'String[]'>
+  readonly cycle: Prisma.FieldRef<"Project", 'String'>
+  readonly academic_period: Prisma.FieldRef<"Project", 'String'>
   readonly startDate: Prisma.FieldRef<"Project", 'DateTime'>
   readonly endDate: Prisma.FieldRef<"Project", 'DateTime'>
   readonly careerId: Prisma.FieldRef<"Project", 'String'>
-  readonly skillsId: Prisma.FieldRef<"Project", 'String'>
   readonly createdAt: Prisma.FieldRef<"Project", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Project", 'DateTime'>
 }
@@ -1788,25 +1931,6 @@ export type ProjectDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
- * Project.skills
- */
-export type Project$skillsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Skills
-   */
-  select?: Prisma.SkillsSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Skills
-   */
-  omit?: Prisma.SkillsOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.SkillsInclude<ExtArgs> | null
-  where?: Prisma.SkillsWhereInput
-}
-
-/**
  * Project.userProjects
  */
 export type Project$userProjectsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1828,6 +1952,30 @@ export type Project$userProjectsArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   distinct?: Prisma.UserProjectScalarFieldEnum | Prisma.UserProjectScalarFieldEnum[]
+}
+
+/**
+ * Project.projectSkills
+ */
+export type Project$projectSkillsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the projectSkills
+   */
+  select?: Prisma.projectSkillsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the projectSkills
+   */
+  omit?: Prisma.projectSkillsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.projectSkillsInclude<ExtArgs> | null
+  where?: Prisma.projectSkillsWhereInput
+  orderBy?: Prisma.projectSkillsOrderByWithRelationInput | Prisma.projectSkillsOrderByWithRelationInput[]
+  cursor?: Prisma.projectSkillsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProjectSkillsScalarFieldEnum | Prisma.ProjectSkillsScalarFieldEnum[]
 }
 
 /**

@@ -20,6 +20,11 @@ export class ProjectsController {
     return this.projectsService.findAll(paginationDto);
   }
 
+  @Get('skill/:skillId')
+  findProjectsBySkillId(@Param('skillId') skillId: string) {
+    return this.projectsService.findProjectsBySkillId(skillId);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.projectsService.findOne(id);

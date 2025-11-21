@@ -10,9 +10,10 @@ import { CareersModule } from './careers/careers.module';
 import { ProjectsModule } from './projects/projects.module';
 import { UsersProjectsModule } from './users-projects/users-projects.module';
 import { SkillsModule } from './skills/skills.module';
+import { PorjectsSkillsModule } from './porjects-skills/porjects-skills.module';
 
 @Module({
-  imports: [UsersModule, AuthModule, RolesModule, PermissionsModule, RolesPermissionsModule, CareersModule, ProjectsModule, UsersProjectsModule, SkillsModule],
+  imports: [UsersModule, AuthModule, RolesModule, PermissionsModule, RolesPermissionsModule, CareersModule, ProjectsModule, UsersProjectsModule, SkillsModule, PorjectsSkillsModule],
   controllers: [AppController],
   providers: [AppService],
 })

@@ -57,3 +57,8 @@ export type UserProject = Prisma.UserProjectModel
  * 
  */
 export type Skills = Prisma.SkillsModel
+/**
+ * Model projectSkills
+ * 
+ */
+export type projectSkills = Prisma.projectSkillsModel

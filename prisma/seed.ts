@@ -9,6 +9,7 @@ async function main() {
 	// Limpiar la base de datos (opcional, comentar si no deseas limpiar)
 	console.log("🧹 Cleaning database...");
 	await prisma.userProject.deleteMany();
+	await prisma.projectSkills.deleteMany();
 	await prisma.project.deleteMany();
 	await prisma.user.deleteMany();
 	await prisma.rolePermission.deleteMany();
@@ -321,7 +322,11 @@ async function main() {
 				status: "in-progress",
 				startDate: new Date("2024-09-01"),
 				careerId: careers[0].id,
-				skillsId: skills[4].id, // NestJS
+				objectives: [
+					"Implementar módulo de gestión de estudiantes",
+					"Desarrollar sistema de calificaciones",
+					"Crear panel administrativo",
+				],
 			},
 		}),
 		prisma.project.create({
@@ -332,7 +337,11 @@ async function main() {
 				status: "in-progress",
 				startDate: new Date("2024-10-01"),
 				careerId: careers[0].id,
-				skillsId: skills[2].id, // React
+				objectives: [
+					"Implementar generación de códigos QR",
+					"Desarrollar lector de QR en dispositivos móviles",
+					"Crear sistema de reportes de asistencia",
+				],
 			},
 		}),
 		prisma.project.create({
@@ -344,7 +353,11 @@ async function main() {
 				startDate: new Date("2024-08-01"),
 				endDate: new Date("2024-11-01"),
 				careerId: careers[1].id,
-				skillsId: skills[5].id, // Python
+				objectives: [
+					"Analizar el proceso actual de producción",
+					"Identificar cuellos de botella",
+					"Proponer mejoras mediante simulación",
+				],
 			},
 		}),
 		prisma.project.create({
@@ -354,7 +367,11 @@ async function main() {
 				status: "in-progress",
 				startDate: new Date("2024-09-15"),
 				careerId: careers[2].id,
-				skillsId: skills[3].id, // Node.js
+				objectives: [
+					"Configurar sensores de temperatura y humedad",
+					"Implementar comunicación con servidor",
+					"Desarrollar dashboard de visualización",
+				],
 			},
 		}),
 		prisma.project.create({
@@ -365,7 +382,11 @@ async function main() {
 				status: "in-progress",
 				startDate: new Date("2024-10-15"),
 				careerId: careers[0].id,
-				skillsId: skills[6].id, // Machine Learning
+				objectives: [
+					"Recolectar y limpiar datos históricos",
+					"Entrenar modelo de predicción",
+					"Validar precisión del modelo",
+				],
 			},
 		}),
 	]);
@@ -411,6 +432,78 @@ async function main() {
 	]);
 
 	console.log("✅ User-Project assignments created");
+
+	// ========== PROJECT SKILLS ==========
+	console.log("💪 Assigning skills to projects...");
+	await Promise.all([
+		// Sistema de Gestión Escolar - NestJS, TypeScript, Database Design
+		prisma.projectSkills.create({
+			data: {
+				projectId: projects[0].id,
+				skillId: skills[4].id, // NestJS
+			},
+		}),
+		prisma.projectSkills.create({
+			data: {
+				projectId: projects[0].id,
+				skillId: skills[1].id, // TypeScript
+			},
+		}),
+		prisma.projectSkills.create({
+			data: {
+				projectId: projects[0].id,
+				skillId: skills[7].id, // Database Design
+			},
+		}),
+		// Aplicación Móvil - React, JavaScript
+		prisma.projectSkills.create({
+			data: {
+				projectId: projects[1].id,
+				skillId: skills[2].id, // React
+			},
+		}),
+		prisma.projectSkills.create({
+			data: {
+				projectId: projects[1].id,
+				skillId: skills[0].id, // JavaScript
+			},
+		}),
+		// Análisis de Procesos - Python
+		prisma.projectSkills.create({
+			data: {
+				projectId: projects[2].id,
+				skillId: skills[5].id, // Python
+			},
+		}),
+		// Sistema IoT - Node.js, JavaScript
+		prisma.projectSkills.create({
+			data: {
+				projectId: projects[3].id,
+				skillId: skills[3].id, // Node.js
+			},
+		}),
+		prisma.projectSkills.create({
+			data: {
+				projectId: projects[3].id,
+				skillId: skills[0].id, // JavaScript
+			},
+		}),
+		// Predicción con ML - Python, Machine Learning
+		prisma.projectSkills.create({
+			data: {
+				projectId: projects[4].id,
+				skillId: skills[6].id, // Machine Learning
+			},
+		}),
+		prisma.projectSkills.create({
+			data: {
+				projectId: projects[4].id,
+				skillId: skills[5].id, // Python
+			},
+		}),
+	]);
+
+	console.log("✅ Project-Skills assignments created");
 
 	console.log("\n🎉 Seed completed successfully!");
 	console.log("\n📝 Test Credentials:");
